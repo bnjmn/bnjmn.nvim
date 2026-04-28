@@ -5,14 +5,22 @@ return {
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
     config = function()
       require('venv-selector').setup {
-        pipenv_path = '~/.local/share/virtualenvs',
-        pyenv_path = '~/.pyenv/versions',
+        settings = {
+          search = {
+            find_slash_tmp = {
+              command = 'fd python$ ~/.venvs --full-path',
+            },
+          },
+        },
+        -- pipenv_path = '~/.local/share/virtualenvs',
+        -- pyenv_path = '~/.pyenv/versions',
       }
     end,
     opts = {
-      -- Your options go here
+      -- Your options gobbere
       -- name = "venv",
       -- auto_refresh = false
+      -- dubug = true,
     },
     event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
     keys = {

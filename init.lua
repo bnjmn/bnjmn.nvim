@@ -390,10 +390,12 @@ require('lazy').setup({
         pickers = {
           -- search for/in hidden files by default
           find_files = {
+
             hidden = true,
           },
           live_grep = {
-            additional_args = { '--hidden' },
+            -- Include hidden files/dirs but exclude .git/ dir
+            additional_args = { '--hidden', '-g', '!.git/' },
           },
         },
 
@@ -917,6 +919,10 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      -- pyfold = {
+      --   enable = true,
+      --   custom_foldtext = true,
+      -- },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
