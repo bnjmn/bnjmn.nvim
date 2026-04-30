@@ -903,14 +903,16 @@ require('lazy').setup({
     end,
   },
 
-  { -- Highlight, edit, and navigate code
+  -- NOTE: nvim-treesitter (v1 API, branch = 'main') requires two system dependencies:
+  --   1. tree-sitter    (brew install tree-sitter)
+  --   2. tree-sitter-cli (brew install tree-sitter-cli  OR  npm install -g tree-sitter-cli)
+  -- Without these, :TSInstall will fail with "no such file or directory: tree-sitter".
+  {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     lazy = false,
     build = ':TSUpdate',
-    branch = 'main',
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
-      -- Only install parsers not bundled with Neovim 0.12 (bash, c, lua, markdown, query, vim, vimdoc are built-in)
       local parsers = { 'diff', 'html', 'javascript', 'typescript', 'tsx', 'json', 'css' }
       require('nvim-treesitter').install(parsers)
 
